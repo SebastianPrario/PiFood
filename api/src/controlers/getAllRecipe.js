@@ -1,22 +1,17 @@
 require('dotenv').config();
 const { URL, API_KEY } = process.env;
 const axios = require ('axios');
-const { Recipe, Diet } = require ('./../db')
+const { Recipe, Diet } = require ('../db')
 const { Op } = require("sequelize");
 
 
-// funcion que obtiene info de la api
-const getAllRecipesApi = async(name) => {
+//funcion que obtiene info de la api
+const getAllRecipesApi = async() => {
     const response = await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')
     //`${URL}complexSearch${API_KEY}&addRecipeInformation=true&number=2` (resultados mockeados)
     const respuesta =  response.data
-    if (!respuesta) throw Error ('no se pudo conectar con la api ')
-    const array = respuesta.results.filter( elem => 
-        {const aux=elem.title
-         const aux2 = aux.toLowerCase()
-         if(aux2.includes(name)) return true})
-
-    const getAllRecipes = array.map( elem => {
+   
+    const getAllRecipes = respuesta.results.map( elem => {
         return {
             id: elem.id,
             nombre: elem.title,
@@ -30,19 +25,16 @@ const getAllRecipesApi = async(name) => {
                 ? elem.diets.map((d) => d).join(", ")
                 : elem.diets
         }
+        
     })
-   
+    
     return getAllRecipes
 }
 
 //funcion que obtiene la info de la BDD
-const getAllRecipesFromBDD = async  (name) => {
+const getAllRecipesFromBDD = async  () => {
 
     const recipesBdd =  await Recipe.findAll({
-        where: { 
-            nombre:{
-             [Op.iLike]:`%${name}%`    
-        }},
         include: {
             model: Diet, 
             attributes: ["nombre"], 
@@ -51,13 +43,13 @@ const getAllRecipesFromBDD = async  (name) => {
             },
         }
     })
-  
+   console.log(recipesBdd)
    return recipesBdd
 }
 
 
-const dataFromBD =async (name) => {
-    const data = await getAllRecipesFromBDD(name)
+const dataFromBD =async () => {
+    const data = await getAllRecipesFromBDD()
     const newArray = data.map((elem) => ({
         id: elem.id,
         nombre: elem.nombre,
@@ -74,24 +66,18 @@ const dataFromBD =async (name) => {
 }
 
 
-
-
-
 // funcion que une la info de la api y la BDD
-const recipes = async (name) => { 
+const recipes = async () => { 
   
-   const recipeApi =  await getAllRecipesApi(name)
-   const recipeBdd =  await dataFromBD(name)
-   if( recipeApi.length===0 && recipeBdd.length===0) throw Error ('no existe receta con ese nombre')
-   console.log(recipeApi)
+   const recipeApi =  await getAllRecipesApi()
+   const recipeBdd =  await dataFromBD()
+  
    const getAllRecipes  = [...recipeApi,...recipeBdd]
    return getAllRecipes
   //console.log(recipeApi)
   //console.log(getAllRecipes)
 
 }    
-
-
 
 
 

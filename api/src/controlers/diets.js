@@ -3,10 +3,9 @@ const {  Diet } = require ('./../db');
 
 
 
-// funcion que ingresa los datos de las dietas a la BDD. (problema hay que ejecutarla dos veces para que pueda leer los datos)
-
-const getDiets = async () => {
-
+// funcion que crea en la BDD las dietas 
+const createDiest = async () => {
+    
     let diets = await Diet.findAll()
     
     const addDbb = async (element) => await Diet.create({nombre: element})
@@ -27,6 +26,16 @@ const getDiets = async () => {
     
    
     
+    console.log ('dietas creadas')
+   
+}
+
+// funcion que buscan en la BDD las dietas
+
+const getDiets = async () => {
+
+    let diets = await Diet.findAll()
+ 
     return diets
 }
-module.exports = getDiets
+module.exports = {getDiets , createDiest}
