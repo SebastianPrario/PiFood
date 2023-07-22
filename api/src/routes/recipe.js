@@ -1,10 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const getRecipe = require ('../controlers/getRecipe')
-const getRecipeByName = require ('../controlers/getRecipeByName.js');
+const getRecipe = require ('../controlers/getRecipeById')
 const createRecipe = require('../controlers/createRecipe');
 const deleteRecipe = require('../controlers/deleteRecipe');
-const getAllRecipes = require ('../controlers/getAllRecipe')
+const getAllRecipes = require ('../controlers/getRecipe')
 
 
 // ruta para buscar por id pasado por params 
@@ -25,7 +24,7 @@ router.get("/" , async (req,res) => {
         const name = req.query.name
         if (name) {
             const nombre = name.toLowerCase()
-            const recipes = await getRecipeByName(nombre)
+            const recipes = await getAllRecipes(nombre)
             res.status(200).json(recipes)
         } else {
             const recipes = await getAllRecipes()
