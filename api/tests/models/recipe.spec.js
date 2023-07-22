@@ -10,12 +10,25 @@ describe('Recipe model', () => {
     beforeEach(() => Recipe.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
-        Recipe.create({})
+        Recipe.create({
+          image: 'url://miimage.jpg',
+          resumen: 'Ejemplo de plato',
+          nivel_saludable: 10,
+          pasos: 'serie de pasos ',
+        })
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Recipe.create({ name: 'Milanesa a la napolitana' });
+        Recipe.create({ 
+          nombre: 'Milanesa a la napolitana',
+          image: 'url://miimage.jpg',
+          resumen: 'Ejemplo de plato',
+          nivel_saludable: 10,
+          pasos: 'serie de pasos ',
+        })
+        .then(() => done(new Error('It requires a valid name')))
+        .catch(() => done());
       });
     });
   });
