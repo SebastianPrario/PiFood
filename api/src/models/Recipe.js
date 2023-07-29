@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       primaryKey: true,
       defaultValue: () => {
-        return 'BDD' + Math.random().toString(36).substring(2, 15);
+        return  999900000000 + Math.floor(Math.random()*100000000);
       }
     },
    nombre: {
@@ -17,23 +17,19 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-    
+     
+      
     },
     resumen: {
       type: DataTypes.TEXT,
-      allowNull: false
+     
     },
     nivel_Saludable: {
       type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {
-        min: 0,
-        max: 100
-      }
+      
     },
     pasos: {
       type: DataTypes.TEXT,
-      allowNull: false
     }
     },
     {

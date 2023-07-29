@@ -1,18 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const getRecipe = require ('../controlers/getRecipeById')
+const getRecipeById = require ('../controlers/getRecipeById')
 const createRecipe = require('../controlers/createRecipe');
 const deleteRecipe = require('../controlers/deleteRecipe');
-const getAllRecipes = require ('../controlers/getRecipe')
+const getAllRecipes = require ('../controlers/getRecipe');
+const updateRecipe = require('../controlers/updateRecipe');
 
 
 // ruta para buscar por id pasado por params 
 
 router.get("/:id", async (req,res) => {
     try {
-       
         const id = req.params.id 
-        const recipe = await getRecipe(id)
+        const recipe = await getRecipeById(id)
         res.status(200).json(recipe)
     } catch (error) {res.status(400).json({error: error.message})}
       
@@ -38,6 +38,7 @@ router.get("/" , async (req,res) => {
 router.post("/" , async (req,res) => {
     try {
         const recipe = req.body
+        console.log(recipe)
         const newRecipe = await createRecipe(recipe)
         res.status(201).json(newRecipe)
     } catch (error) {res.status(400).json({error: error.message})}
@@ -53,5 +54,20 @@ router.delete("/:id" , async (req,res) => {
     } catch (error) {res.status(400).json({error: error.message})}
       
 })
+
+// router.put("/" , async (req,res) => {
+//     try {
+//         const recipe = req.body
+//         const updateRecipes = await updateRecipe(recipe)
+//         res.status(201).send('Receta Actualizada')
+//     }  catch (error) {res.status(400).json({error: error.message})}
+      
+// })
+
+
+
+
+
+
 
 module.exports = router

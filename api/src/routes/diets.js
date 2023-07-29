@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getDiets, createDiest} = require('../controlers/diets')
+const {getDiets, createDiet} = require('../controlers/diets')
 
 
 
@@ -8,7 +8,7 @@ const {getDiets, createDiest} = require('../controlers/diets')
 router.get("/" , async (req,res) => {
     
     try {
-        await createDiest()
+        await createDiet()
         await getDiets()
         const diets = await getDiets()
         res.status(200).json(diets)

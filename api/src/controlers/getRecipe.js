@@ -8,13 +8,15 @@ const { Op } = require("sequelize");
 // funcion que obtiene info de la api
 const getAllRecipesApi = async(name) => {
     const response = await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')
-    //`${URL}complexSearch${API_KEY}&addRecipeInformation=true&number=2` (resultados mockeados)
-    const respuesta =  response.data
+    .then((response) => response)
+    .catch((error) => {throw new Error('el servidor no respondio')})
+    //`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=2` (resultados mockeados)
+    const respuesta = await response.data
     if (name) {
         const array = respuesta.results.filter( elem => 
-        {const aux=elem.title
-         const aux2 = aux.toLowerCase()
-         if(aux2.includes(name)) return true})
+        {
+         
+         if(elem.title.toLowerCase().includes(name)) return true})
 
         const getAllRecipes = array.map( elem => {
          return {
@@ -26,9 +28,7 @@ const getAllRecipesApi = async(name) => {
             pasos: elem.analyzedInstructions[0]?.steps.map((r) => {
                 return r.step}).join("")
             ,
-            diets: elem.diets.length
-                ? elem.diets.map((d) => d).join(", ")
-                : elem.diets
+            diets: elem.diets
             }
         }) 
         return getAllRecipes
@@ -43,9 +43,7 @@ const getAllRecipesApi = async(name) => {
                 pasos: elem.analyzedInstructions[0]?.steps.map((r) => {
                     return r.step}).join("")
                 ,
-                diets: elem.diets.length
-                    ? elem.diets.map((d) => d).join(", ")
-                    : elem.diets
+                diets: elem.diets
             }})
        
         return getAllRecipes
@@ -96,9 +94,8 @@ const dataFromBD =async (name) => {
         nivel_saludable: elem.nivel_Saludable,
         resumen: elem.resumen,
         pasos: elem.pasos,
-        diets: elem.diets.length
-        ? elem.diets.map((d) => d.nombre).join(", ")
-        : elem.diets
+        diets: elem.diets.map(ele => ele.nombre)
+        
     }))
    
     return newArray

@@ -1,0 +1,25 @@
+
+.Nav {
+
+background-color: #f4ebeb;
+height: 100px;
+width: 150%;
+display: flex;
+justify-content: space-around;
+font-size: 1 rem;
+text-align:center;
+
+}
+
+.div {
+
+
+display: flex;
+width: 100%;
+justify-content: space-evenly;
+align-items: center;
+text-align:center;
+color: #f4ebeb;
+background-color: aliceblue;
+   
+}

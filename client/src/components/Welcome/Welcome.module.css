@@ -1,0 +1,60 @@
+.box{
+    background-image:url("../../image//ingredientes-italianos-apetitosos-frescos-sabrosos-comida-fondo-oscuro-listo-cocinar-inicio-italiano-comida-saludable-concepto-cocina-viraje.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.container{
+    width: 50vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #808e953f;
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #252506;
+    text-align: center;
+    color: #ebebeb;
+    justify-items: center;
+    align-items: center;
+}
+
+.mensaje {
+    font-size: 100px;
+    font-weight: normal;
+    font-family: 'cakeCafe';
+    color: rgb(234, 213, 55);
+    background-color: rgb(136, 136, 18);
+    border-radius: 2cap
+}
+
+
+
+.button{
+    width: 100px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    padding: 18px;
+    color: #150101;
+    font-weight: bold;
+    border: 2px solid #ebebeb;
+    border-radius: 6px;
+    font-size: 18px;
+    background-color:rgb(193, 174, 91);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover{
+    background-color: #d1cbae73;
+}
+

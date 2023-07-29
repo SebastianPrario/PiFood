@@ -4,13 +4,13 @@ const {  Diet } = require ('./../db');
 
 
 // funcion que crea en la BDD las dietas 
-const createDiest = async () => {
+const createDiet = async () => {
     
     let diets = await Diet.findAll()
     
     const addDbb = async (element) => await Diet.create({nombre: element})
 
-    if ( diets.length == 0) {
+    if ( diets.length === 0) {
         
         const response =  await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')
         //`${URL}complexSearch${API_KEY}&addRecipeInformation=true&number=1`
@@ -26,8 +26,6 @@ const createDiest = async () => {
     
    
     
-    console.log ('dietas creadas')
-   
 }
 
 // funcion que buscan en la BDD las dietas
@@ -38,4 +36,4 @@ const getDiets = async () => {
  
     return diets
 }
-module.exports = {getDiets , createDiest}
+module.exports = {getDiets , createDiet}

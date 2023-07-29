@@ -1,0 +1,7 @@
+.body {
+  margin: 0%;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image :linear-gradient(to right, #54586896, #4f3d5070), url('./image/pizza.jpg');
+  }
