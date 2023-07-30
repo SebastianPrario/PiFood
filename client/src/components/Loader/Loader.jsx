@@ -1,14 +1,9 @@
-import React from 'react'
+import React from "react";
+import style from './Loader.module.css'
 
-
-function Loader() {
-  
-
-    <div>
-      cargando
-    </ div>
+export default function Loader() {
+  return (
+    <div class={style.loader}>
+    </div>
+  );
 }
-
-export default Loader
-
-

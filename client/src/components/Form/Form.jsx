@@ -1,5 +1,5 @@
 import React from 'react';
-import { add_recipe , get_diets} from '../../redux/actions';
+import { add_recipe , get_diets, get_recipe} from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -7,12 +7,17 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import style from './Form.module.css'
 
-const Form = () => {
+export default function Form () {
    
    const dispatch = useDispatch()
+
+   const recipeNombres = useSelector((state) => state.recipes)
+   const listaDiets = useSelector( (state) => state.diets)
+   
    
    useEffect(() => {
-      dispatch(get_diets());
+      dispatch(get_diets())
+      dispatch(get_recipe());
   }, [dispatch])
 
 
@@ -27,14 +32,27 @@ const Form = () => {
       diets: [],
    })
 
+   const [ error,setError ] = useState ({
+      nombre: "Debe ingresar un nombre",
+      image: "",
+      nivel_Saludable: "",
+      resumen: "Debe escribir un resumen de al menos 150 caracteres",
+      pasos: "Debe escribir los pasos para preparar",
+      diets: [],
+   })
+   
    const { nombre, image, nivel_Saludable, resumen, pasos, diets } = recipe
 
- 
-   const listaDiets = useSelector( (state) => state.diets)
+   function validar (recipe) {
+      const errors = {}
+      if (!recipe.nombre) {errors.nombre = "Debe ingresar un nombre"};
+      if (recipe.resumen.length<150) {errors.resumen="Debe escribir un resumen de al menos 150 caracteres"};
+      if (!recipe.pasos) {errors.pasos="Debe escribir los pasos para preparar"};
+      return errors
+   }
+   
    const list = listaDiets?.map((e)=> e)
-   
- 
-   
+     
  
    function handleChange(e) {
          
@@ -44,48 +62,57 @@ const Form = () => {
                   ...recipe,
                   [nameinput]: valueinput,
          });
+         setError(validar({...recipe,[nameinput]: valueinput }))
    } 
-     
-      const deleteDiet = (diet) => {
+    
+   const deleteDiet = (diet) => {
          setRecipe({ ...recipe, diets: diets.filter((d) => d !== String(diet))})
-      }
+   }
 
-     function handleChangeDiets(e) {
+   function handleChangeDiets(e) {
          setRecipe({ ...recipe, diets: [...recipe.diets, e.target.value]})
-      }
-     
-
+         setError(validar({...recipe,diets: e.target.value }))
+   }
+    
      function handleSubmit(event) { 
-      event.preventDefault()
-      if (!nombre) return alert ("Debe ingresar un nombre")
-      if (!nivel_Saludable) return alert ("Nivel Saludable entre 0 y 100")
-      if (diets.length === 0) return alert ("Seleccionar al menos una dieta")
-      if (!resumen) return alert ("Debe escribir un resumen de la receta")
-      if (!pasos) return alert ("Debe escribir los pasos para preparar")   
-      dispatch(add_recipe(recipe))
-      setRecipe({
-      nombre: "",
-      image: "",
-      nivel_Saludable: "",
-      resumen: "",
-      pasos: "",
-      diets: [],
-      })
-      alert ('tu receta ha sido creada con exito')
+         event.preventDefault()
+         if(Object.keys(error).length) {return alert ('Faltan datos en la receta')}
+         if(recipe.diets<=1) {return alert ("Seleccionar al menos una dieta")}
+         else {   
+            dispatch(add_recipe(recipe))
+            setRecipe({
+               nombre: "",
+               image: "",
+               nivel_Saludable: "",
+               resumen: "",
+               pasos: "",
+               diets: [],
+            })
+            setError({
+               nombre: "Debe ingresar un nombre",
+               image: "",
+               nivel_Saludable: "",
+               resumen: "Debe escribir un resumen de al menos 150 caracteres",
+               pasos: "Debe escribir los pasos para preparar",
+               diets: [],
+            })
+            alert ('tu receta ha sido creada con exito')
+         }
       }
-     
+      
    return (
       <div className={style.container}>
          <form className={style.form} onSubmit={(e)=>handleSubmit(e)}>
-            <div className={style.nombre}>    
+            <div className={style.nombre}>  
                <label htmlFor='name'></label>
                <input 
                   name='nombre'
                   type='text' 
-                  value={recipe.nombre}
+                  value={nombre}
                   autoComplete='off'
                   onChange={(e)=>{handleChange(e)}}>
-               </input>
+               </input>  
+               <span>{error.nombre}</span>
             </div>
             <div className={style.img}>
                <label htmlFor='image'></label>
@@ -117,6 +144,7 @@ const Form = () => {
                value={resumen}
                onChange={(e)=>{handleChange(e)}}>
                </textarea>
+               <span>{error.resumen}</span>
             </div>
 
             <div className={style.pasos}>
@@ -126,16 +154,18 @@ const Form = () => {
                name='pasos'
                value={pasos}
                onChange={(e)=>{handleChange(e)}}/>
+               <span>{error.pasos}</span>
             </div>
-            <div className={style.diets}>
-               <span>Seleccionar dietas</span>
+            <div>{error.diets}</div>
+            <div className={style.diets}>                       {/* seleccionamos la dieta del menu */}
+               <span>Seleccionar dietas</span>  
                   <select onChange={(e) => handleChangeDiets(e)} defaultValue={'0'}>
                      {list.map((diet) => (
                      <option key={diet.id} value={diet.id}>{diet.nombre}</option>
                      ))}
-                  </select>
-               <div>
-                  {diets && diets.map((d) => {
+                  </select> 
+               <div>                                             {/* creamos un div en donde muestre las dietas elegidas  */}
+                  {diets && diets.map((d) => {                     {/*tenemos que crear un array en donde esten los nombres  */}
                      const label = list.filter((diet) => diet.id === Number(d))
                      return (
                         <div key={label[0].nombre} className={style.listItem}>
@@ -147,7 +177,7 @@ const Form = () => {
                </div>
             </div>      
             <div className={style.buttons}>
-               <button className={style.button} type='submit'>Crear Receta</button>
+               <button className={style.button} type='button' onClick={(e)=>handleSubmit(e)}>Crear Receta</button>
                <button className={style.button} type="button"  onClick={() => { navigate('/home') }}>Atras</button>
             </div>
          </form>
@@ -155,4 +185,4 @@ const Form = () => {
    )
 }
 
-export default Form;
+

@@ -10,7 +10,7 @@ export default function Home() {
           <Nav />
             <div className={style.div}>
               <div className={style.titulo}>
-                Que comemos hoy?
+                Qué comemos hoy?
               </div>
             </div>
         </header>

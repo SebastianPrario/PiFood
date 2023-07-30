@@ -1,12 +1,20 @@
 @font-face {
     font-family: 'cakeCafe';
-    src: url('./Fonts/Cakecafe.ttf');
+    src: url('./Fonts/MonteCarlo-Regular.ttf');
 }
 
 @font-face{   
 font-family: 'cookies';
     src: url('./Fonts//Cookies\ and\ Cheese\ Bold\ -Demo.ttf');
 }
+@font-face{   
+    font-family: 'beauty';
+        src: url('./Fonts/BeautyDemo.ttf');
+    }
+@font-face{   
+        font-family: 'praise';
+            src: url('./Fonts/Praise-Regular.ttf');
+        }
 
 .body{
     display: flex;

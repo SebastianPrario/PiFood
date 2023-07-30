@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
-import { useEffect } from "react";
 import { getRecipeByName } from '../../redux/actions/index'
 
 
@@ -15,10 +14,6 @@ export default function SearchBar() {
     dispatch(getRecipeByName(e.target.value))
   }
 
-  function handleSubmit(e){
-    e.preventDefault();
-    setName('');  
-  }
     
   return( 
     <>

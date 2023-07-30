@@ -1,0 +1,19 @@
+.loader {
+    border : 20px, solid rgba(233, 222, 222, 0);
+    border-bottom: 20px solid aquamarine;
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border-left-color:transparent;
+    animation: spin 2s linear infinite;
+    
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate((360deg))
+    }
+}

@@ -5,6 +5,7 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import style from './RecipeContainer.module.css'
 import { get_diets, get_recipe } from "../../redux/actions";
 import ToolBar from "../ToolBar/ToolBar";
+import Loader from './../Loader/Loader'
 
 
 
@@ -67,10 +68,8 @@ export default function RecipeContainer () {
             </div>
         </div>
     ) : (
-        <div className={style.loader}>
-            cargando ...
-        <img src='./../../image/loadingGIF2.gif' alt="Loading gif" height={400}width={400}></img>
-        </div>
+        
+        <Loader />
     )  
 }
 
