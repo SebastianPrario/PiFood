@@ -8,7 +8,7 @@ const axios = require ('axios');
 const recipeFromApi = async (ido) => {
  try{
    
-    const response = await axios.get(`${URL}${ido}/information${API_KEY}`)
+    const response = await axios.get(`${URL}${ido}/information?apiKey=${API_KEY}`)
     const { id , title, summary , image ,diets , healthScore , analyzedInstructions} = response.data
         const recipeApi = {
         id,

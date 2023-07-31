@@ -1,0 +1,36 @@
+.fondo{
+    width: 100%;
+    height: 100%;
+    background-image: url('./../../image//tabla-cortar-madera-rodeada-platos-pasta-e-ingredientes-mesa.jpg');
+    display: flex;
+    flex-direction: column;
+   
+    
+}
+.image {
+  
+    margin:auto;
+    width: auto;
+
+}
+.button {
+	
+	--offset: 10px;
+	--border-size: 2px;
+	
+	
+	position: relative;
+	padding: 1.5em 3em;
+	appearance: none;
+	border: 0;
+	background: transparent;
+	color: #e55743;
+	text-transform: uppercase;
+	letter-spacing: .25em;
+	outline: none;
+	cursor: pointer;
+	font-weight: bold;
+	border-radius: 0;
+	box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+    margin-top: 20px;
+}

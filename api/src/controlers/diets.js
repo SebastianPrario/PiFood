@@ -12,8 +12,9 @@ const createDiet = async () => {
 
     if ( diets.length === 0) {
         
-        const response =  await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')
-        //`${URL}complexSearch${API_KEY}&addRecipeInformation=true&number=1`
+        const response =  await axios.get(`https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd`)
+        //'https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd'
+        //``${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100``
         const respuesta =  response.data;
         const dietas = respuesta.results.map(elem => elem.diets)
         const dieta = dietas.flat()

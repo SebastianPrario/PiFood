@@ -178,7 +178,7 @@ export default function Form () {
             </div>      
             <div className={style.buttons}>
                <button className={style.button} type='button' onClick={(e)=>handleSubmit(e)}>Crear Receta</button>
-               <button className={style.button} type="button"  onClick={() => { navigate('/home') }}>Atras</button>
+               <button className={style.button} type="button"  onClick={() => navigate('/home') }>Atras</button>
             </div>
          </form>
       </div>

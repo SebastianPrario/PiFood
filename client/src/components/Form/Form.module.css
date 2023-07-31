@@ -2,23 +2,25 @@
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
-    background-color:rgb(212, 203, 104);
     height: 900px;
+    background-image: url('./../../image/ingredientes-italianos-apetitosos-frescos-sabrosos-comida-fondo-oscuro-listo-cocinar-inicio-italiano-comida-saludable-concepto-cocina-viraje.jpg');
     
   
 
 
 }
 .form{
+    margin-top: 1%;
     width: 1100px;
     height: 800px;
     display: flex;
     position: absolute;
     left: 5%;
-    background-image: url('../../image/crear_Receta.jpg');
+    background-image: url('./../../image/crear_Receta.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 1;
 
 }
 

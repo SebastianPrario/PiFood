@@ -38,3 +38,17 @@
     text-size-adjust: true;
     text-align: center;
 }
+
+.close {
+
+  position: absolute;
+  background-color: red;  
+  border-radius: 50% ,50%,50%,50%;
+  height: 30px;
+  width: 30px;
+  justify-items: center;
+  align-self: center;
+  z-index: 1;
+ 
+  
+}

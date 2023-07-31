@@ -1,9 +1,9 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import style from './RecipeContainer.module.css'
-import { get_diets, get_recipe } from "../../redux/actions";
+import { deleteRecipeById, get_diets, get_recipe } from "../../redux/actions";
 import ToolBar from "../ToolBar/ToolBar";
 import Loader from './../Loader/Loader'
 
@@ -24,9 +24,12 @@ export default function RecipeContainer () {
     const recxPag = 9;
     const pageTotal = Math.ceil(recipes?.length / recxPag) 
 
-   
-  
-    const recipeToRender = recipes?.slice(recxPag * currentPage, recxPag * (currentPage+1) )
+   const recipeToRender = useMemo(() => {
+    if (recipes.length > 0) {
+      return recipes?.slice(recxPag * currentPage, recxPag * (currentPage+1))
+    }  
+    return [];
+   }, [recipes, currentPage, sortBy])
    
     function handlerpagenext () {
         setCurrentPage( currentPage + 1) 
@@ -34,6 +37,11 @@ export default function RecipeContainer () {
      
     function handlerpageprev () {
         setCurrentPage(currentPage - 1)
+    }
+
+    function closeButton  (id) {
+        dispatch(deleteRecipeById(id))
+        setCurrentPage(0)
     }
 
 
@@ -46,11 +54,11 @@ export default function RecipeContainer () {
             </div>
             <div className={style.paginado}>
                 <div className={style.un}>
-                <button onClick={handlerpageprev} disabled={currentPage === 0} >Anterior</button>
+                <button className={style.buttonpag} onClick={handlerpageprev} disabled={currentPage === 0} >Anterior</button>
                 </div>
                 <div className={style.un}> página {currentPage + 1} de {pageTotal}  </div>
                 <div className={style.un}>
-                <button onClick={handlerpagenext} disabled={currentPage === pageTotal-1}> Siguiente </button>
+                <button className={style.buttonpag} onClick={handlerpagenext} disabled={currentPage === pageTotal-1}> Siguiente </button>
                 </div>
             </div>  
             
@@ -61,8 +69,9 @@ export default function RecipeContainer () {
                     id= {elem.id}
                     nombre = {elem.nombre}
                     image = {elem.image}
-                    diet = {elem.diets}/>
-
+                    diet = {elem.diets}
+                    closeButton={closeButton}
+                />
                 ))
             }
             </div>

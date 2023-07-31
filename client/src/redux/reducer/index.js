@@ -1,4 +1,4 @@
-import { FILTER_BDD,ORDER_RECIPES,ORDER_BY_HEALTHSCORE,ADD_RECIPE,GET_DIETS,GET_RECIPE,GET_RECIPE_NAME,GET_RECIPE_ID,FILTER_DIETS } from "../actions";
+import { FILTER_BDD,ORDER_RECIPES,ORDER_BY_HEALTHSCORE,ADD_RECIPE,GET_DIETS,GET_RECIPE,GET_RECIPE_NAME,GET_RECIPE_ID,FILTER_DIETS, DELETE_RECIPE } from "../actions";
 
 
 const inicialState =  { 
@@ -87,7 +87,14 @@ const rootReducer = (state= inicialState,action) => {
                                 return{
                                     ...state,
                                     recipes: orderByScore
-                                } 
+        }
+        
+        case DELETE_RECIPE:
+            const recipes = state.recipes.filter( elem => elem.id !== action.payload)
+            return {
+                ...state,
+                recipes: recipes
+            }
         
         
 

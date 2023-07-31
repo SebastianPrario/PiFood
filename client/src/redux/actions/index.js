@@ -11,6 +11,7 @@ export const FILTER_DIETS ="FILTER_DIETS"
 export const ORDER_RECIPES = "ORDER_RECIPES"
 export const ORDER_BY_HEALTHSCORE = "ORDER_BY_HEALTHSCORE"
 export const FILTER_BDD="FILTER_BDD"
+export const DELETE_RECIPE="DELETE_RECIPE"
 
 
 
@@ -101,16 +102,31 @@ export const filterByBdd = (data) => {
 
 export function orderByRecipe(data) {
     return {
-        type: "ORDER_RECIPES",
+        type: ORDER_RECIPES,
         payload: data
     }
 }
 
 export function orderByHealth(data) {
     return {
-        type: "ORDER_BY_HEALTHSCORE",
+        type: ORDER_BY_HEALTHSCORE,
         payload: data
     }
 }
 
+export function deleteRecipeById(id) {
+    const endpoint = `http://localhost:3001/recipes/${id}`;
+    try{
+        return async (dispatch) => {
+            const { data } = await  axios.delete(endpoint)
+        
+            return dispatch({
+                type: DELETE_RECIPE,
+                payload: id,
+            })}
+    } 
+    catch (error) {
+        console.log (error)
+    }; 
+}
 

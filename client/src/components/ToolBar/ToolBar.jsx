@@ -6,6 +6,8 @@ import './ToolBar.css'
 export default function ToolBar({ setCurrentPage, setSortBy }) {
 
    const dispatch = useDispatch()
+
+   const recipesBdd = useSelector((state) => state.recipes).filter((elem) => elem.id > 10000000)
     
     const dietList = useSelector((state) => state.diets);
     const diestByName = dietList?.map((el) => el.nombre);
@@ -52,11 +54,6 @@ export default function ToolBar({ setCurrentPage, setSortBy }) {
                     <option value="H-L">Higher</option>
                 </select>
             </div>
-            {/* <div>
-                <button onClick={() => window.location.reload()} className="reset">
-                    Recargar Recetas
-                </button>
-            </div> */}
             <div className="filterContainer">
                 <span>Filtrar dietas:</span>
                 <select onChange={(e) => handleChangeDiets(e)} className="selectMain">
@@ -73,7 +70,7 @@ export default function ToolBar({ setCurrentPage, setSortBy }) {
             <span>Filtrar por Origen:</span>
                 <select onChange={(e) => handleChangeBdd(e)} className="selectMain">
                     <option value="TODAS">Todas</option>
-                    <option value='Bdd' key='Bdd'>Propias</option>
+                    <option value='Bdd' disabled={!recipesBdd.length > 0} key='Bdd'>Propias</option>
                     <option value='Api' key='Api'>API</option>                 
                 </select>
             </div>
