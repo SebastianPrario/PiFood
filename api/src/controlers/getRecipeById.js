@@ -52,13 +52,6 @@ const getRecipe = async (id) => {
    if(recipeApi) return recipeApi
    
    return 'no hay nada que devolver'
-   
 }
 
-
-
-
-
 module.exports = getRecipe
-
-// falta hacer la busqueda en la base de datos sino encuentra en la appi

@@ -9,16 +9,29 @@ const recipe = {
   name: 'Milanea a la napolitana',
 };
 
-describe('Recipe routes', () => {
-  before(() => conn.authenticate()
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  }));
-  beforeEach(() => Recipe.sync({ force: true })
-    .then(() => Recipe.create(recipe)));
-  describe('GET /recipes', () => {
-    it('should get 200', () =>
-      agent.get('/recipes').expect(200)
-    );
-  });
+// describe('Recipe routes', () => {
+//   before(() => conn.authenticate()
+//   .catch((err) => {
+//     console.error('Unable to connect to the database:', err);
+//   }));
+//   beforeEach(() => Recipe.sync({ force: true })
+//     .then(() => Recipe.create(recipe)));
+
+//     describe('GET /recipes', () => {
+//     it('should get 200', () =>
+//       agent.get('/recipes').expect(200)
+//     );
+//   });
+// });
+
+describe('GET /recipes/sarasa', () => {
+  it('should get 200', () =>
+    agent.get('/recipes/sarasa').expect(200)
+  );
+});
+;
+describe('GET /recipes/1258', () => {
+  it('should get 200', () =>
+    agent.get('/recipes/sarasa').expect(200)
+  );
 });

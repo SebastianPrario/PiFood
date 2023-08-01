@@ -10,10 +10,10 @@ router.use("/recipes", recipeRouter);
 
 router.use("/diets", dietsRouter);
 
-
-
-
-
+router.use(( req, res, next) => {  // caso en que se ponga una url distinta a la solicitada (residual)
+    res.status(404).send('dirección no encontrada');
+});
+  
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

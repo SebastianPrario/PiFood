@@ -55,18 +55,6 @@ router.delete("/:id" , async (req,res) => {
       
 })
 
-// router.put("/" , async (req,res) => {
-//     try {
-//         const recipe = req.body
-//         const updateRecipes = await updateRecipe(recipe)
-//         res.status(201).send('Receta Actualizada')
-//     }  catch (error) {res.status(400).json({error: error.message})}
-      
-// })
-
-
-
-
 
 
 
