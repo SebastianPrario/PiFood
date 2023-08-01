@@ -1,5 +1,5 @@
 const express = require ('express');
-const { Recipe } = require ('../db');
+const { Recipe } = require ('./../db');
 
 
 const createRecipe = async (recipe) => {

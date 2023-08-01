@@ -1,5 +1,5 @@
 const axios = require ('axios');
-const {  Diet } = require ('../db');
+const {  Diet } = require ('./../db');
 
 
 
