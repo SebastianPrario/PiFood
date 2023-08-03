@@ -1,5 +1,9 @@
 import axios from 'axios'
+import URL from './../../falseenv'
 
+console.log(URL)
+
+console.log(URL)
 export const GET_RECIPE = "GET_RECIPE"
 export const ADD_RECIPE = "ADD_RECIPE"
 export const REMOVE_RECIPE = "REMOVE_RECIPE"
@@ -21,7 +25,7 @@ export const get_recipe = () => {
 
     try{
         return async (dispatch) => {
-            const {data} = await axios.get('http://localhost:3001/recipes/')
+            const {data} = await axios.get(`${URL}/recipes/`)
             return dispatch({
                 type: 'GET_RECIPE',
                 payload: data,
@@ -35,7 +39,7 @@ export const getRecipeByName=(name) => {
     
         return async (dispatch) => {
          try{ 
-            const {data} = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            const {data} = await axios.get(`${URL}/recipes?name=${name}`)
             return dispatch({
                 type: 'GET_RECIPE_NAME',
                 payload: data,
@@ -47,7 +51,7 @@ export const getRecipeByName=(name) => {
 export const getRecipeById = (id) => {
     try{
         return async (dispatch) => {
-            const {data} = await axios.get(`http://localhost:3001/recipes/${id}`)
+            const {data} = await axios.get(`${URL}/recipes/${id}`)
             return dispatch({
                 type: 'GET_RECIPE_ID',
                 payload: data,
@@ -58,7 +62,7 @@ export const getRecipeById = (id) => {
 
 
 export const add_recipe =   (recipe) => {
-    const endpoint = 'http://localhost:3001/recipes/';
+    const endpoint = `${URL}/recipes/`;
    try{
         console.log(recipe)
        return async (dispatch) => {
@@ -73,7 +77,7 @@ export const add_recipe =   (recipe) => {
 };
 
 export const get_diets = () => {
-    const endPoint = 'http://localhost:3001/diets/';
+    const endPoint = `${URL}/diets/`;
         try{
             return async (dispatch) => {
                 const {data} = await axios.get(endPoint)
@@ -115,7 +119,7 @@ export function orderByHealth(data) {
 }
 
 export function deleteRecipeById(id) {
-    const endpoint = `http://localhost:3001/recipes/${id}`;
+    const endpoint = `${URL}/recipes/${id}`;
     try{
         return async (dispatch) => {
             const { data } = await  axios.delete(endpoint)
