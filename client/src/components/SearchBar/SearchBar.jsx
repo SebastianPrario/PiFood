@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { getRecipeByName } from '../../redux/actions/index'
 import style from './SearchBar.module.css'
+import search from './../../image/search.png'
 
 
 export default function SearchBar() {
    
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const [, setName] = useState('');
 
   function handleInput(e){
     e.preventDefault();
@@ -19,11 +20,14 @@ export default function SearchBar() {
   return( 
     <div className={style.searchBox}> 
       
-      <input type="text" className={style.searchInput}
+      <input type="search" className={style.searchInput}
         placeholder="Buscar Recetas..." 
         onChange={e => handleInput(e)}
-      ></input>
-      <h3 className={style.titulo}>buscar..</h3>
+        autoComplete='off'>
+      </input>
+      
+      <img src={search} alt="search" height={40}width={30}/>
+      
 
     </div>
  )

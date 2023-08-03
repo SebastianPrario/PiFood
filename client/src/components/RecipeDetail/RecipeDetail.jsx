@@ -23,25 +23,18 @@ export default function RecipeDetaild () {
         <div className={style.container}>
           
             <img className={style.img} src={recipe?.image ? recipe.image : pizza} alt={recipe.nombre}/> 
-                <div className={style.title}>
+            <div className={style.title}>
                 <h1>{recipe.nombre}</h1>
-                </div>
-            <h3>Nivel Saludable:{recipe.nivel_saludable}</h3>
-        
-            <div>            
-                <p className={style.resumen}>{recipe.resumen}</p>
             </div>
-            <hr></hr>
-            
-            <p className={style.resumen}>{recipe.pasos}</p>
-
-            <button type="button" className={style.button} onClick={() => { navigate('/Home') }}>Back</button>
-   
-
+            <h3>Nivel Saludable:{recipe.nivel_saludable}</h3>
+            <div>            
+                <p className={style.resumen}><strong>Resumen:  </strong>{recipe.resumen}</p>
+                <p className={style.resumen}><strong>Pasos:  </strong>{recipe.pasos}</p>
+            </div>
+            <button type="button" className={style.button} onClick={() => { navigate('/Home') }}>
+                Back
+            </button>
         </div>
     )
-
-
-
 
 } 

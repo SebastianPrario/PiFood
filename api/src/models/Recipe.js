@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
      
     },
-    nivel_Saludable: {
+    nivel_saludable: {
       type: DataTypes.FLOAT,
       
     },

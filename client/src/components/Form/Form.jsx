@@ -11,9 +11,8 @@ export default function Form () {
    
    const dispatch = useDispatch()
 
-   const recipeNombres = useSelector((state) => state.recipes)
+   const recipeNombres = useSelector((state) => state.recipes) //importo 
    const listaDiets = useSelector( (state) => state.diets)
-   
    
    useEffect(() => {
       dispatch(get_diets())
@@ -26,7 +25,7 @@ export default function Form () {
   const [recipe , setRecipe] = useState({
       nombre: "",
       image: "",
-      nivel_Saludable: "",
+      nivel_saludable: "",
       resumen: "",
       pasos: "",
       diets: [],
@@ -35,19 +34,20 @@ export default function Form () {
    const [ error,setError ] = useState ({
       nombre: "Debe ingresar un nombre",
       image: "",
-      nivel_Saludable: "",
+      nivel_saludable: "",
       resumen: "Debe escribir un resumen de al menos 150 caracteres",
       pasos: "Debe escribir los pasos para preparar",
       diets: [],
    })
    
-   const { nombre, image, nivel_Saludable, resumen, pasos, diets } = recipe
+   const { nombre, image, nivel_saludable, resumen, pasos, diets } = recipe
 
    function validar (recipe) {
       const errors = {}
       if (!recipe.nombre) {errors.nombre = "Debe ingresar un nombre"};
       if (recipe.resumen.length<150) {errors.resumen="Debe escribir un resumen de al menos 150 caracteres"};
       if (!recipe.pasos) {errors.pasos="Debe escribir los pasos para preparar"};
+      if (!recipe.nivel_saludable) {errors.nivel_saludable="Debe ingresar el Nivel Saludable"};
       return errors
    }
    
@@ -76,6 +76,8 @@ export default function Form () {
     
      function handleSubmit(event) { 
          event.preventDefault()
+         const aux = recipeNombres.filter(elem =>elem.nombre === recipe.nombre)
+         if(aux.length>0){return alert ('Receta Repetida')}
          if(Object.keys(error).length) {return alert ('Faltan datos en la receta')}
          if(recipe.diets<=1) {return alert ("Seleccionar al menos una dieta")}
          else {   
@@ -83,7 +85,7 @@ export default function Form () {
             setRecipe({
                nombre: "",
                image: "",
-               nivel_Saludable: "",
+               nivel_saludable: "",
                resumen: "",
                pasos: "",
                diets: [],
@@ -91,7 +93,7 @@ export default function Form () {
             setError({
                nombre: "Debe ingresar un nombre",
                image: "",
-               nivel_Saludable: "",
+               nivel_saludable: "",
                resumen: "Debe escribir un resumen de al menos 150 caracteres",
                pasos: "Debe escribir los pasos para preparar",
                diets: [],
@@ -114,7 +116,7 @@ export default function Form () {
                </input>  
                <span>{error.nombre}</span>
             </div>
-            <div className={style.img}>
+            <div className={style.img}> 
                <label htmlFor='image'></label>
                <input
                   type='text'
@@ -123,19 +125,22 @@ export default function Form () {
                   autoComplete='off'
                   onChange={(e)=>{handleChange(e)}}>
                </input>
+              
             </div>
             <div className={style.nivel}>
+              
                <label htmlFor='nivel_saludable'></label>
                <input 
                   type='number'
-                  name='nivel_Saludable'
+                  name='nivel_saludable'
                   min={1}
                   max={100}
-                  value={nivel_Saludable}
+                  value={nivel_saludable}
                   onChange={(e)=>{handleChange(e)}}>
                </input>
+              
             </div>
-
+            <span className={style.errornivel}>{error.nivel_saludable}</span>
             <div className={style.resumen}>
                <label htmlFor='resumen'></label>
                <textarea className={style.textarea}
@@ -164,8 +169,8 @@ export default function Form () {
                      <option key={diet.id} value={diet.id}>{diet.nombre}</option>
                      ))}
                   </select> 
-               <div>                                             {/* creamos un div en donde muestre las dietas elegidas  */}
-                  {diets && diets.map((d) => {                     {/*tenemos que crear un array en donde esten los nombres  */}
+               <div>                                      
+                  {diets && diets.map((d) => {               
                      const label = list.filter((diet) => diet.id === Number(d))
                      return (
                         <div key={label[0].nombre} className={style.listItem}>

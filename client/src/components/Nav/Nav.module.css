@@ -23,7 +23,21 @@ color: #f4ebeb;
 background-color: rgb(217, 215, 198);
    
 }
+
 .button {
+	color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+	height: 30px;
+	width: 50%;
+}
+
+.button:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
+
+/* .button {
 	height: 20px;
     width: 25%;
 	--offset: 1px;
@@ -43,4 +57,4 @@ background-color: rgb(217, 215, 198);
 	border-radius: 0;
 	box-shadow: inset 0 0 0 var(--border-size) currentcolor;
     margin-top: 2px;
-}
+} */

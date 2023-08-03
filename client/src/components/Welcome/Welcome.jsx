@@ -8,9 +8,9 @@ export default function Welcome() {
         <div className={style.box}>
             <h1 className={style.mensaje}>Qué comemos hoy? </h1>
             <div className={style.button}>
-            <Link 
-            to='/home'>ingresar
-            </Link>
+                <Link className={style.link}
+                    to='/home'>ingresar
+                </Link>
            </div>
         </div>
     )

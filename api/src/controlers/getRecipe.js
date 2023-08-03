@@ -86,7 +86,7 @@ const dataFromBD =async (name) => {
         id: elem.id,
         nombre: elem.nombre,
         image: elem.image,
-        nivel_saludable: elem.nivel_Saludable,
+        nivel_saludable: elem.nivel_saludable,
         resumen: elem.resumen,
         pasos: elem.pasos,
         diets: elem.diets.map(ele => ele.nombre)

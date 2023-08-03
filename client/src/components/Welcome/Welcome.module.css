@@ -11,6 +11,7 @@
     padding: 0;
     overflow-x: hidden;
     height: 100vh;
+  
 }
 
 .container{
@@ -43,7 +44,7 @@
 .button{
     width: 100px;
     box-sizing: border-box;
-    margin-top: 20px;
+   
     padding: 18px;
     color: #150101;
     font-weight: bold;
@@ -53,9 +54,14 @@
     background-color:rgb(193, 174, 91);
     cursor: pointer;
     transition: 0.3s;
+   
+   
 }
 
 .button:hover{
     background-color: #d1cbae73;
 }
 
+.link {
+    text-decoration: none;
+}

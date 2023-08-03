@@ -8,7 +8,6 @@ import ToolBar from "../ToolBar/ToolBar";
 import Loader from './../Loader/Loader'
 
 
-
 export default function RecipeContainer () {
     
     const dispatch = useDispatch()
@@ -47,38 +46,39 @@ export default function RecipeContainer () {
 
     return recipes.length > 0  ? (
         <div>
-            <div className={style.tooBar}><ToolBar
+            <div className={style.tooBar}>
+                <ToolBar
                 setSortBy={setSortBy}
-                setCurrentPage={setCurrentPage}
-            />
+                setCurrentPage={setCurrentPage}/>
             </div>
             <div className={style.paginado}>
-                <div className={style.un}>
-                <button className={style.buttonpag} onClick={handlerpageprev} disabled={currentPage === 0} >Anterior</button>
+                <div>
+                 <button className={style.buttonpag} onClick={handlerpageprev} disabled={currentPage === 0} >Anterior</button>
                 </div>
-                <div className={style.un}> página {currentPage + 1} de {pageTotal}  </div>
-                <div className={style.un}>
-                <button className={style.buttonpag} onClick={handlerpagenext} disabled={currentPage === pageTotal-1}> Siguiente </button>
+                <div className={style.page}>
+                     página {currentPage + 1} de {pageTotal}  
                 </div>
-            </div>  
-            
+                <div className={style.un}>
+                    <button className={style.buttonpag} onClick={handlerpagenext} disabled={currentPage === pageTotal-1}> Siguiente </button>
+                </div>
+            </div>   
             <div className={style.cardsContainer}>
-            {recipeToRender.map ((elem) => (
-                <RecipeCard 
+                {recipeToRender.map ((elem) => (
+                    <RecipeCard 
                     key= {elem.id}
                     id= {elem.id}
                     nombre = {elem.nombre}
                     image = {elem.image}
                     diet = {elem.diets}
                     closeButton={closeButton}
-                />
-                ))
-            }
+                    />
+                ))}
             </div>
         </div>
     ) : (
-        
+     
         <Loader />
+        
     )  
 }
 

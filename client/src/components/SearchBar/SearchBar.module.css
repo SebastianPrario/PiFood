@@ -3,26 +3,30 @@
     top: 10%;
     left: 80%;
     transform:  translate(-50%,50%);
-    background: #9d8a0c;
+    background: #d0cbae;
     height: 40px;
     border-radius: 40px;
     padding: 10px;
     align-content:space-around;
     justify-content: center;
-    
-   
-   
 
+      
+    @media (max-width:450px){
+        display: none;
+    } 
+    
 }
 
 .searchBox:hover > .searchInput {
     width: 240px;
     padding: 0 6px;
+   
 
 }
 
 .searchBox:hover > .titulo {
  visibility: hidden;
+
   
 }
 

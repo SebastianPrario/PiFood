@@ -26,18 +26,17 @@
 }
 
 .resumen {
-    justify-self:left;
-    margin: auto;
+   
+    margin-left: 20%;
     text-align: justify;
     width: 58%;
+   
 }
 
 .button {
 	
 	--offset: 10px;
 	--border-size: 2px;
-	
-	
 	position: relative;
 	padding: 1.5em 3em;
 	appearance: none;

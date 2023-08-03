@@ -9,9 +9,9 @@ export function Nav() {
    return (
         <nav className={style.nav} >
             <div className={style.div}>
-            <Link to='/dietas' className={style.button}><button className={style.button}>dietas</button></Link>
-            <SearchBar/>
-            <Link to='/form' className={style.button}><button className={style.button}>crear</button></Link>
+                <Link to='/dietas' className={style.button}><button className={style.button}>dietas</button></Link>
+                <SearchBar/>
+                <Link to='/form' className={style.button}><button className={style.button}>crear</button></Link>
             </div>
         </nav>
         )

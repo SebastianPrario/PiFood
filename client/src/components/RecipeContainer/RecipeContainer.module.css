@@ -9,6 +9,14 @@
     align-items: flex-start;
     position: fixed;
     justify-content: space-between;
+    @media (max-width:850px){
+     .page {
+      display: none;
+     }
+    ;
+  }
+
+
 }
 .cardsContainer{
     display: flex;
@@ -36,4 +44,12 @@
   
   .buttonpag:hover:not(.active) {
     background-color: #ddd;
+  }
+
+  .norecipe {
+    height: 900px;
+    width: 700px;
+  }
+  .norecipetitle {
+    color: chartreuse;
   }

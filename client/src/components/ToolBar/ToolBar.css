@@ -11,6 +11,9 @@
     position: fixed;
     top: 130px;
 
+@media (max-width:450px){
+    display:none
+}
 }
 
 .selectMain{

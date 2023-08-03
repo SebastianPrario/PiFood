@@ -3,13 +3,13 @@ const { Recipe } = require ('../db');
 
 
 const updateRecipe = async (recipe) => {
-           const {id, image, nombre, resumen, nivel_Saludable, pasos, diets} = recipe
+           const {id, image, nombre, resumen, nivel_saludable, pasos, diets} = recipe
           
            await Recipe.update({
                 nombre,
                 image,
                 resumen,
-                nivel_Saludable,
+                nivel_saludable,
                 pasos,
                 diets
                 }, 

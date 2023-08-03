@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { orderByHealth, orderByRecipe , filterByDiets , filterByBdd } from "../../redux/actions/index"
 import './ToolBar.css'
@@ -10,37 +10,31 @@ export default function ToolBar({ setCurrentPage, setSortBy }) {
    const recipesBdd = useSelector((state) => state.recipes).filter((elem) => elem.id > 10000000)
     
     const dietList = useSelector((state) => state.diets);
-    const diestByName = dietList?.map((el) => el.nombre);
+    const diestByName = dietList?.map((elem) => elem.nombre);
     
-    const handleChange = (e) => {
+    const handleChange = (event) => {
      
-        if (e.target.value === "A-z" || e.target.value === 'Z-a') {
-            dispatch(orderByRecipe(e.target.value))
+        if (event.target.value === "A-z" || event.target.value === 'Z-a') {
+            dispatch(orderByRecipe(event.target.value))
             setCurrentPage(0)
-            setSortBy(e.target.value)
+            setSortBy(event.target.value)
      
         } else {
-            dispatch(orderByHealth(e.target.value))
+            dispatch(orderByHealth(event.target.value))
             setCurrentPage(0)
-            setSortBy(e.target.value)
+            setSortBy(event.target.value)
         }
     }
 
-    const handleChangeDiets = (e) => 
-        {dispatch(filterByDiets(e.target.value))
-         setCurrentPage(0);
-        
-    
-    }
-
-    const handleChangeBdd = (e) => {
-        dispatch(filterByBdd(e.target.value))
+    const handleChangeDiets = (event) => {
+        dispatch(filterByDiets(event.target.value))
         setCurrentPage(0);
     }
 
-    useEffect(() => {
-
-    }, [dispatch] )
+    const handleChangeBdd = (event) => {
+        dispatch(filterByBdd(event.target.value))
+        setCurrentPage(0);
+    }
 
     return (
         <div className="toolbar">
@@ -62,7 +56,6 @@ export default function ToolBar({ setCurrentPage, setSortBy }) {
                         return (
                             <option value={el} key={el}>{el}</option>
                         )
-
                     })}
                 </select>
             </div>

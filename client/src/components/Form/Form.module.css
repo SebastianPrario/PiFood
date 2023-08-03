@@ -45,6 +45,12 @@
     left: 16%;
     color: blue;
 }
+.errornivel {
+    position: absolute;
+    top:26%;
+    left: 14%;
+    color: blue;
+}
 
 .pasos {
     position: absolute;
