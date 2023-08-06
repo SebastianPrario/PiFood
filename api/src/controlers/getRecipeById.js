@@ -22,7 +22,7 @@ const recipeFromApi = async (ido) => {
     }
    
     return recipeApi
-} catch (error) { return('no hay receta con ese ID')}
+} catch (error) { return(error)}
 }
 
 const recipeFromBDD = async  (ido) => {
