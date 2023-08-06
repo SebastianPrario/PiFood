@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f8810b2f.chunk.css",
+    "main.js": "/static/js/main.a1574f21.chunk.js",
+    "main.js.map": "/static/js/main.a1574f21.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.391ad654.js",
+    "runtime-main.js.map": "/static/js/runtime-main.391ad654.js.map",
+    "static/js/2.0080eece.chunk.js": "/static/js/2.0080eece.chunk.js",
+    "static/js/2.0080eece.chunk.js.map": "/static/js/2.0080eece.chunk.js.map",
+    "static/js/3.954763d1.chunk.js": "/static/js/3.954763d1.chunk.js",
+    "static/js/3.954763d1.chunk.js.map": "/static/js/3.954763d1.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.f8810b2f.chunk.css.map": "/static/css/main.f8810b2f.chunk.css.map",
+    "static/js/2.0080eece.chunk.js.LICENSE.txt": "/static/js/2.0080eece.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/ingredientes-italianos-apetitosos-frescos-sabrosos-comida-fondo-oscuro-listo-cocinar-inicio-italiano-comida-saludable-concepto-cocina-viraje.73cd04e1.jpg",
+    "static/media/Form.module.css": "/static/media/crear_Receta.a1943725.jpg",
+    "static/media/listado de dietas.2d88e8c3.jpg": "/static/media/listado de dietas.2d88e8c3.jpg",
+    "static/media/pizza.3811df2f.jpg": "/static/media/pizza.3811df2f.jpg",
+    "static/media/RecipeDetail.module.css": "/static/media/recetaDetalle.9467a8b5.jpg",
+    "static/media/search.945f1b66.png": "/static/media/search.945f1b66.png",
+    "static/media/Dietas.module.css": "/static/media/tabla-cortar-madera-rodeada-platos-pasta-e-ingredientes-mesa.03cc07b7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.391ad654.js",
+    "static/js/2.0080eece.chunk.js",
+    "static/css/main.f8810b2f.chunk.css",
+    "static/js/main.a1574f21.chunk.js"
+  ]
+}

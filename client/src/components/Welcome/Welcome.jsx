@@ -6,12 +6,13 @@ export default function Welcome() {
   
     return (
         <div className={style.box}>
-            <h1 className={style.mensaje}>Qué comemos hoy? </h1>
+            <h1 className={style.titulo}>Qué comemos hoy? </h1>
             <div className={style.button}>
                 <Link className={style.link}
                     to='/home'>ingresar
                 </Link>
-           </div>
+            </div>
+           <h1 className={style.mensaje}>elige entre miles de recetas o crea nuevas y guárdalas para vos!! </h1>
         </div>
     )
 }

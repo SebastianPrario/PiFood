@@ -29,7 +29,7 @@
     align-items: center;
 }
 
-.mensaje {
+.titulo {
     font-size: 150px;
     font-weight: normal;
     font-family: 'praise';
@@ -44,7 +44,6 @@
 .button{
     width: 100px;
     box-sizing: border-box;
-   
     padding: 18px;
     color: #150101;
     font-weight: bold;
@@ -64,4 +63,24 @@
 
 .link {
     text-decoration: none;
+}
+
+.mensaje {
+    margin-top: 10%;
+    margin-left:15%;
+    font-size: 40px;
+    font-weight: normal;
+    font-family: 'praise';
+    color: rgb(235, 210, 151);
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+
+}
+
+@media (max-width:850px){
+        .titulo {
+         font-size: 50px;
+        }
+        .mensaje {
+            font-size: 20px;
+           }
 }
