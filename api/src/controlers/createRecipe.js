@@ -4,6 +4,7 @@ const { Recipe } = require ('../db');
 
 const createRecipe = async (recipe) => {
     const {nombre, image, resumen, nivel_saludable, pasos, diets} = recipe
+    console.log(recipe)
     if (!nombre || !resumen || !nivel_saludable || !pasos || !diets) throw Error ("Falta información para crear receta")
     const newRecipe = await Recipe.create({
             nombre,

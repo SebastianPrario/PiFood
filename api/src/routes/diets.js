@@ -2,9 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {getDiets, createDiet} = require('../controlers/diets')
 
-
-
-
+// ruta para obtener las dietas almacenadas en el servidor. 
 router.get("/" , async (req,res) => {
     
     try {

@@ -49,8 +49,8 @@ const rootReducer = (state= inicialState,action) => {
             let recipeFilterBdd = state.allRecipe
             let recipesBdd = []
             if( action.payload === 'TODAS') {recipesBdd=recipeFilterBdd}
-            if( action.payload === 'Api') {recipesBdd = recipeFilterBdd.filter( elem => elem.id<10000000)}
-            if( action.payload === 'Bdd')recipesBdd = recipeFilterBdd.filter( elem => elem.id>10000000)
+            if( action.payload === 'Api') {recipesBdd = recipeFilterBdd.filter( elem => elem.id>100000)}
+            if( action.payload === 'Bdd')recipesBdd = recipeFilterBdd.filter( elem => elem.id<100000)
             return {
                ...state , recipes: recipesBdd
             }

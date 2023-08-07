@@ -4,11 +4,8 @@ const getRecipeById = require ('../controlers/getRecipeById')
 const createRecipe = require('../controlers/createRecipe');
 const deleteRecipe = require('../controlers/deleteRecipe');
 const getAllRecipes = require ('../controlers/getRecipe');
-const updateRecipe = require('../controlers/updateRecipe');
-
 
 // ruta para buscar por id pasado por params 
-
 router.get("/:id", async (req,res) => {
     try {
         const id = req.params.id 
@@ -17,8 +14,8 @@ router.get("/:id", async (req,res) => {
     } catch (error) {res.status(400).json({error: error.message})}
       
 });
-// ruta para buscar que puede tener o no query. busca nombre por query
 
+// ruta para buscar recetas  que puede tener o no query. si tiene query = nombre : busca  por nombre de receta
 router.get("/" , async (req,res) => {
     try {
         const name = req.query.name
@@ -38,7 +35,6 @@ router.get("/" , async (req,res) => {
 router.post("/" , async (req,res) => {
     try {
         const recipe = req.body
-        console.log(recipe)
         const newRecipe = await createRecipe(recipe)
         res.status(201).json(newRecipe)
     } catch (error) {res.status(400).json({error: error.message})}
@@ -54,8 +50,5 @@ router.delete("/:id" , async (req,res) => {
     } catch (error) {res.status(400).json({error: error.message})}
       
 })
-
-
-
 
 module.exports = router

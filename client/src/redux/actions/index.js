@@ -1,9 +1,7 @@
 import axios from 'axios'
 import URL from './../../falseenv'
 
-console.log(URL)
 
-console.log(URL)
 export const GET_RECIPE = "GET_RECIPE"
 export const ADD_RECIPE = "ADD_RECIPE"
 export const REMOVE_RECIPE = "REMOVE_RECIPE"

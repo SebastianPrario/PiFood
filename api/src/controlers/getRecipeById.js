@@ -1,4 +1,3 @@
-const express = require ('express');
 require('dotenv').config();
 const { URL, API_KEY } = process.env;
 const { Recipe, Diet } = require ('../db')
@@ -22,7 +21,7 @@ const recipeFromApi = async (ido) => {
     }
    
     return recipeApi
-} catch (error) { return(error)}
+} catch (error) { return('id de receta no encontrada')}
 }
 
 const recipeFromBDD = async  (ido) => {
@@ -44,13 +43,9 @@ const recipeFromBDD = async  (ido) => {
 const getRecipe = async (id) => {
    
    const recipeBdd =  await recipeFromBDD(id)
-   console.log('aca',recipeBdd)
    if(recipeBdd) return recipeBdd
-   console.log('ahora')
    const recipeApi =  recipeFromApi(id)
-   console.log(recipeApi,'aca2')
    if(recipeApi) return recipeApi
-   
    return 'no hay nada que devolver'
 }
 

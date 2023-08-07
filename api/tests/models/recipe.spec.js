@@ -6,7 +6,7 @@ describe('Recipe model', () => {
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     }));
-  xdescribe('Validators', () => {
+  describe('Validators', () => {
     beforeEach(() => Recipe.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {

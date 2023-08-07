@@ -1,8 +1,6 @@
 const axios = require ('axios');
 const {  Diet } = require ('../db');
 
-
-
 // funcion que crea en la BDD las dietas 
 const createDiet = async () => {
     

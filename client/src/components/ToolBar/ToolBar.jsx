@@ -7,7 +7,7 @@ export default function ToolBar({ setCurrentPage, setSortBy }) {
 
    const dispatch = useDispatch()
 
-   const recipesBdd = useSelector((state) => state.recipes).filter((elem) => elem.id > 10000000)
+   const recipesBdd = useSelector((state) => state.recipes).filter((elem) => elem.id < 100000)
     
     const dietList = useSelector((state) => state.diets);
     const diestByName = dietList?.map((elem) => elem.nombre);
