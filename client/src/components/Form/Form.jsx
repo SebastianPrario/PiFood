@@ -81,6 +81,7 @@ export default function Form () {
          if(Object.keys(error).length) {return alert ('Faltan datos en la receta')}
          if(recipe.diets<=1) {return alert ("Seleccionar al menos una dieta")}
          else {   
+            console.log(recipe)
             dispatch(add_recipe(recipe))
             setRecipe({
                nombre: "",

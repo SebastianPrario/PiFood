@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import RecipeCard from "../RecipeCard/RecipeCard";
@@ -11,25 +11,20 @@ import Loader from './../Loader/Loader'
 export default function RecipeContainer () {
     
     const dispatch = useDispatch()
-    const recipes = useSelector((state) => state.recipes)
+    const {recipes,allRecipe} = useSelector((state) => state)
     const [ sortBy, setSortBy ] = useState('')
     
     useEffect(() => {
         dispatch(get_recipe())
         dispatch(get_diets())
-    },[dispatch])
+    },[])
     
     const [currentPage ,setCurrentPage] = useState(0)
     const recxPag = 9;
     const pageTotal = Math.ceil(recipes?.length / recxPag) 
 
-   const recipeToRender = useMemo(() => {
-    if (recipes.length > 0) {
-      return recipes?.slice(recxPag * currentPage, recxPag * (currentPage+1))
-    }  
-    return [];
-   }, [recipes, currentPage, sortBy])
-   
+    const recipeToRender =  recipes.length > 0 ? recipes?.slice(recxPag * currentPage, recxPag * (currentPage+1)) : []
+
     function handlerpagenext () {
         setCurrentPage( currentPage + 1) 
     }
@@ -40,11 +35,14 @@ export default function RecipeContainer () {
 
     function closeButton  (id) {
         dispatch(deleteRecipeById(id))
-        setCurrentPage(0)
+        setSortBy('')
     }
 
-
-    return recipes.length > 0  ? (
+    useEffect(() => {
+        setCurrentPage(0)
+    }, [recipes])
+    
+    return allRecipe.length > 0  ? (
         <div>
             <div className={style.tooBar}>
                 <ToolBar
@@ -62,18 +60,21 @@ export default function RecipeContainer () {
                     <button className={style.buttonpag} onClick={handlerpagenext} disabled={currentPage === pageTotal-1}> Siguiente </button>
                 </div>
             </div>   
-            <div className={style.cardsContainer}>
-                {recipeToRender.map ((elem) => (
-                    <RecipeCard 
-                    key= {elem.id}
-                    id= {elem.id}
-                    nombre = {elem.nombre}
-                    image = {elem.image}
-                    diet = {elem.diets}
-                    closeButton={closeButton}
-                    />
-                ))}
-            </div>
+                {recipes.length>0 ? 
+                <div className={style.cardsContainer}>
+                    {recipeToRender.map ((elem) => (
+                        <RecipeCard 
+                        key= {elem.id}
+                        id= {elem.id}
+                        nombre = {elem.nombre}
+                        image = {elem.image}
+                        diet = {elem.diets}
+                        closeButton={closeButton}
+                        />
+                    ))}
+               </div>  : <div className={style.norecipe}>
+                <h1 className={style.norecipetitle}> no hay recetas para mostrar</h1>
+            </div>}
         </div>
     ) : (
      

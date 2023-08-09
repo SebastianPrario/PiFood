@@ -14,7 +14,7 @@ const rootReducer = (state= inicialState,action) => {
     switch (action.type) {
 
         case ADD_RECIPE: return {
-            ...state, recipes: action.payload
+            ...state, recipes: [ ...state.recipes, action.payload ]
         }
 
         case GET_DIETS: return {
@@ -23,7 +23,7 @@ const rootReducer = (state= inicialState,action) => {
 
         case GET_RECIPE_NAME: return {
             ...state,
-            recipes: action.payload
+            recipes:  action.payload
         }
         case GET_RECIPE: return {
             ...state , allRecipe: action.payload,
@@ -90,10 +90,11 @@ const rootReducer = (state= inicialState,action) => {
         }
         
         case DELETE_RECIPE:
-            const recipes = state.recipes.filter( elem => elem.id !== action.payload)
+            const recipes = state.allRecipe.filter( elem => elem.id !== action.payload)
             return {
                 ...state,
-                recipes: recipes
+                recipes: recipes,
+                allRecipe: recipes
             }
         
         

@@ -7,7 +7,7 @@ export default function RecipeCard ({id,diet,nombre,image, closeButton} ) {
    
     const dietsList = diet?.map((e) => e + " - ")
 
-    const isBdd = id > 10000000   // se crea para poner boton de borrar solo a las recetas propias
+    const isBdd = id < 100000   // se crea para poner boton de borrar solo a las recetas propias
    
     return (
         <div className={style.container} >

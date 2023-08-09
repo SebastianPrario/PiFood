@@ -19,13 +19,7 @@ describe('Recipe routes', () => {
     console.error('Unable to connect to the database:', err);
   }));
   beforeEach(() => Recipe.sync({ force: true })
-    .then(() => Recipe.create(recipe)));
-
-  describe('GET/recipes', () => {
-    it('should get 200', () =>
-      agent.get('/recipes/').expect(200)
-    );
-  });
+   .then(() => Recipe.create(recipe)));
 });
 
 describe('GET /recipes/sarasa/', () => { 

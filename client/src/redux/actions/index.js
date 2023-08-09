@@ -38,9 +38,12 @@ export const getRecipeByName=(name) => {
         return async (dispatch) => {
          try{ 
             const {data} = await axios.get(`${URL}/recipes?name=${name}`)
+            console.log(data)
+            const datas = data==='no existe receta con ese nombre' ? [] : data
+            console.log(datas)
             return dispatch({
                 type: 'GET_RECIPE_NAME',
-                payload: data,
+                payload: datas,
             })
         }catch (error) {alert ('no hay recetas con ese nombre')}
     }
@@ -62,11 +65,11 @@ export const getRecipeById = (id) => {
 export const add_recipe =   (recipe) => {
     const endpoint = `${URL}/recipes/`;
    try{
-        console.log(recipe)
+       
        return async (dispatch) => {
        
        const {data} = await  axios.post(endpoint, recipe)
-      
+    console.log(data)
         return dispatch({
             type: 'ADD_RECIPE',
             payload: data,
@@ -121,7 +124,6 @@ export function deleteRecipeById(id) {
     try{
         return async (dispatch) => {
             const { data } = await  axios.delete(endpoint)
-        
             return dispatch({
                 type: DELETE_RECIPE,
                 payload: id,

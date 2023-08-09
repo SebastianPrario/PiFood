@@ -14,6 +14,7 @@ export default function SearchBar() {
     e.preventDefault();
     setName(e.target.value);
     dispatch(getRecipeByName(e.target.value))
+   
   }
 
     

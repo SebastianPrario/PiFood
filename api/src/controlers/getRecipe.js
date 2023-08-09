@@ -7,15 +7,13 @@ const { Op } = require("sequelize");
 
 // funcion que obtiene info de la api
 const getAllRecipesApi = async(name) => {
-    const response = await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')//rdo mokeado
-    .then((response) => response)
-    .catch((error) => {throw new Error('el servidor no respondio')})
+    const respuesta = (await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')).data
+    //rdo mokeado   
     //`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=2` (resultados api)
-    const respuesta = await response.data
+    
     if (name) {
-        const array = respuesta.results.filter( elem => 
-        {      
-         if(elem.title.toLowerCase().includes(name)) return true
+        const array = respuesta.results.filter( elem => {      
+            if(elem.title.toLowerCase().includes(name)) return true
         })
         const getAllRecipes = array.map( elem => {
             return {
@@ -78,10 +76,8 @@ const getAllRecipesFromBDD = async  (name) => {
      return recipesBdd
     }
 }
-
-
-const dataFromBD =async (name) => {
-    const data = await getAllRecipesFromBDD(name)
+const dataFromBd = async (name) =>{
+    const data  = await getAllRecipesFromBDD(name)
     const newArray = data.map((elem) => ({
         id: elem.id,
         nombre: elem.nombre,
@@ -90,24 +86,20 @@ const dataFromBD =async (name) => {
         resumen: elem.resumen,
         pasos: elem.pasos,
         diets: elem.diets.map(ele => ele.nombre)
-        
     }))
-   
     return newArray
 }
 
-
-
-
-
 // funcion que une la info de la api y la BDD
+
 const recipes = async (name) => { 
   
    const recipeApi =  await getAllRecipesApi(name)
-   const recipeBdd =  await dataFromBD(name)
-   if( recipeApi.length===0 && recipeBdd.length===0) throw Error ('no existe receta con ese nombre')
+   const recipeBdd =  await dataFromBd(name)
    const getAllRecipes  = [...recipeApi,...recipeBdd]
-   return getAllRecipes
+   const mensaje = 'no existe receta con ese nombre'
+   return getAllRecipes.length>0 ? getAllRecipes : mensaje
+
 }    
 
 module.exports = recipes

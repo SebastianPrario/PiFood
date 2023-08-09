@@ -21,12 +21,12 @@ const recipeFromApi = async (ido) => {
     }
    
     return recipeApi
+
 } catch (error) { return('id de receta no encontrada')}
 }
 
 const recipeFromBDD = async  (ido) => {
-
-    const recipesBdd =  await Recipe.findByPk(ido,{
+        const recipesBdd =  await Recipe.findByPk(ido,{
         include: {
             model: Diet, 
             attributes: ['nombre'],
@@ -35,18 +35,28 @@ const recipeFromBDD = async  (ido) => {
             },
         }
     })
+
+    return recipesBdd
   
-   return recipesBdd
 }
 
-//funcion que une la info de la api y la BDD
+//funcion que trae la info de la api y la BDD
+
 const getRecipe = async (id) => {
-   
-   const recipeBdd =  await recipeFromBDD(id)
-   if(recipeBdd) return recipeBdd
-   const recipeApi =  recipeFromApi(id)
-   if(recipeApi) return recipeApi
-   return 'no hay nada que devolver'
+
+const recipe =  id>100000 ? await recipeFromApi(id) : await recipeFromBDD(id)
+const mensaje = 'no hay nada para mostrar'
+return recipe ? recipe : mensaje
 }
 
 module.exports = getRecipe
+
+
+
+
+
+//    const recipeBdd =  await recipeFromBDD(id)
+//    if(recipeBdd) return recipeBdd
+//    const recipeApi =  recipeFromApi(id)
+//    if(recipeApi) return recipeApi
+//    return 'no hay nada que devolver'

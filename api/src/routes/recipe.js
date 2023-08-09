@@ -18,15 +18,10 @@ router.get("/:id", async (req,res) => {
 // ruta para buscar recetas  que puede tener o no query. si tiene query = nombre : busca  por nombre de receta
 router.get("/" , async (req,res) => {
     try {
-        const name = req.query.name
-        if (name) {
-            const nombre = name.toLowerCase()
-            const recipes = await getAllRecipes(nombre)
-            res.status(200).json(recipes)
-        } else {
-            const recipes = await getAllRecipes()
-            res.status(200).json(recipes)
-        }
+        const nombre = req.query.name
+        const recipes = nombre ? await getAllRecipes(nombre.toLowerCase()) : await getAllRecipes()
+        res.status(200).json(recipes)
+
     } catch (error) {res.status(400).json({error: error.message})}
       
 })
