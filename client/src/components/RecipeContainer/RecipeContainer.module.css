@@ -9,6 +9,7 @@
     align-items: flex-start;
     position: fixed;
     justify-content: space-between;
+    z-index: 2;
     @media (max-width:850px){
      .page {
       display: none;
@@ -47,9 +48,21 @@
   }
 
   .norecipe {
-    height: 900px;
-    width: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 700px;
+    width: 900px;
+    @media (max-width:450px)
+      {
+       height: 800px;
+       width: 400px;
+      }
   }
   .norecipetitle {
-    color: chartreuse;
+   margin-top: 20%;
+   margin-left: auto;
+   font-size: 50px;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+   color: rgb(81, 218, 31);
   }

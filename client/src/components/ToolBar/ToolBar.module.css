@@ -10,6 +10,7 @@
     align-items: center;
     position: fixed;
     top: 130px;
+    z-index: 2;
 
 @media (max-width:450px){
     display:none

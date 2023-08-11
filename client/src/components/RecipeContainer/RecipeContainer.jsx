@@ -14,15 +14,24 @@ export default function RecipeContainer () {
     const {recipes,allRecipe} = useSelector((state) => state)
     const [ sortBy, setSortBy ] = useState('')
     
+ 
     useEffect(() => {
         dispatch(get_recipe())
         dispatch(get_diets())
     },[])
     
     const [currentPage ,setCurrentPage] = useState(0)
+    const [pageTotal ,setPageTotal] = useState(0)
     const recxPag = 9;
-    const pageTotal = Math.ceil(recipes?.length / recxPag) 
-
+    
+    
+    function pagesTotal () {
+       const pageTotal = recipes?.lenght<=recxPag ? 1 : Math.ceil(recipes?.length / recxPag)
+       setPageTotal(pageTotal)
+    }
+    
+    console.log(currentPage)
+    console.log(pageTotal)
     const recipeToRender =  recipes.length > 0 ? recipes?.slice(recxPag * currentPage, recxPag * (currentPage+1)) : []
 
     function handlerpagenext () {
@@ -40,6 +49,7 @@ export default function RecipeContainer () {
 
     useEffect(() => {
         setCurrentPage(0)
+        pagesTotal()
     }, [recipes])
     
     return allRecipe.length > 0  ? (
@@ -51,29 +61,31 @@ export default function RecipeContainer () {
             </div>
             <div className={style.paginado}>
                 <div>
-                 <button className={style.buttonpag} onClick={handlerpageprev} disabled={currentPage === 0} >Anterior</button>
+                 <button className={style.buttonpag} onClick={handlerpageprev} disabled={currentPage === 0 || currentPage>pageTotal} >Anterior</button>
                 </div>
                 <div className={style.page}>
                      página {currentPage + 1} de {pageTotal}  
                 </div>
                 <div className={style.un}>
-                    <button className={style.buttonpag} onClick={handlerpagenext} disabled={currentPage === pageTotal-1}> Siguiente </button>
+                    <button className={style.buttonpag} onClick={handlerpagenext} disabled={currentPage === pageTotal-1 || currentPage>=pageTotal}> Siguiente </button>
                 </div>
             </div>   
-                {recipes.length>0 ? 
-                <div className={style.cardsContainer}>
-                    {recipeToRender.map ((elem) => (
-                        <RecipeCard 
-                        key= {elem.id}
-                        id= {elem.id}
-                        nombre = {elem.nombre}
-                        image = {elem.image}
-                        diet = {elem.diets}
-                        closeButton={closeButton}
-                        />
-                    ))}
-               </div>  : <div className={style.norecipe}>
-                <h1 className={style.norecipetitle}> no hay recetas para mostrar</h1>
+            {recipes.length>0 ? 
+            <div className={style.cardsContainer}>
+                {recipeToRender.map ((elem) => (
+                    <RecipeCard 
+                    key= {elem.id}
+                    id= {elem.id}
+                    nivel_saludable= {elem.nivel_saludable}
+                    nombre = {elem.nombre}
+                    image = {elem.image}
+                    diet = {elem.diets}
+                    closeButton={closeButton}
+                    />
+                ))}
+            </div>  : 
+            <div className={style.norecipe}>
+                <div className={style.norecipetitle}>no hay recetas para mostrar</div>
             </div>}
         </div>
     ) : (

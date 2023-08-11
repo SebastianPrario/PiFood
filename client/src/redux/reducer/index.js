@@ -1,21 +1,16 @@
-import { FILTER_BDD,ORDER_RECIPES,ORDER_BY_HEALTHSCORE,ADD_RECIPE,GET_DIETS,GET_RECIPE,GET_RECIPE_NAME,GET_RECIPE_ID,FILTER_DIETS, DELETE_RECIPE } from "../actions";
+import { FILTER_BDD,ORDER_RECIPES,ORDER_BY_HEALTHSCORE,GET_DIETS,GET_RECIPE,GET_RECIPE_NAME,GET_RECIPE_ID,FILTER_DIETS, DELETE_RECIPE } from "../actions";
 
 
 const inicialState =  { 
     recipes: [],
     allRecipe: [],
     diets: [],
-    recipeDetail: {},
-    dietsOrdered: []
+    recipeDetail: {},  
 }
 
 const rootReducer = (state= inicialState,action) => {
     
     switch (action.type) {
-
-        case ADD_RECIPE: return {
-            ...state, recipes: [ ...state.recipes, action.payload ]
-        }
 
         case GET_DIETS: return {
             ...state, diets: action.payload
@@ -81,7 +76,7 @@ const rootReducer = (state= inicialState,action) => {
                     else return -1
                    }) : state.allRecipe.sort((a, b) => {
                                     
-                                    if ((a.nivel_saludable - b.nivel_saludable) < 0) return 1
+                                    if ((a.nivel_saludable - b.nivel_saludable) > 0) return 1
                                     else return -1
                                 })
                                 return{

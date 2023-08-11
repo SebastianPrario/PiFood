@@ -8,10 +8,6 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 require ('dotenv').config()
 
-
-
-
-
 ReactDOM.render(
   <Provider store={store}>  
     <BrowserRouter>

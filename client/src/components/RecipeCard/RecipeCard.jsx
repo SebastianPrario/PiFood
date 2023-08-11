@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import pizza from './../../image/pizza.jpg'
 import style from './RecipeCard.module.css'
 
-export default function RecipeCard ({id,diet,nombre,image, closeButton} ) {
+export default function RecipeCard ({id,diet,nombre,image,nivel_saludable , closeButton} ) {
    
     const dietsList = diet?.map((e) => e + " - ")
 
@@ -11,6 +11,7 @@ export default function RecipeCard ({id,diet,nombre,image, closeButton} ) {
    
     return (
         <div className={style.container} >
+            <div className={style.nivel}><strong>{nivel_saludable}</strong></div>
             {isBdd && 
                 <button className={style.close} onClick={() => closeButton(id)}>
                     X 
@@ -20,6 +21,7 @@ export default function RecipeCard ({id,diet,nombre,image, closeButton} ) {
            
                 <div> 
                     <p>{nombre}</p> 
+                    
                 </div>
                 <div className={style.dietsList}>
                     {dietsList}

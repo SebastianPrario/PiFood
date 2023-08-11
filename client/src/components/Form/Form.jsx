@@ -6,6 +6,9 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import style from './Form.module.css'
+import axios from 'axios';
+import URL from './../../falseenv'
+import validar from './validate'
 
 export default function Form () {
    
@@ -35,22 +38,13 @@ export default function Form () {
       nombre: "Debe ingresar un nombre",
       image: "",
       nivel_saludable: "",
-      resumen: "Debe escribir un resumen de al menos 150 caracteres",
-      pasos: "Debe escribir los pasos para preparar",
+      resumen: "",
+      pasos: "",
       diets: [],
    })
    
    const { nombre, image, nivel_saludable, resumen, pasos, diets } = recipe
-
-   function validar (recipe) {
-      const errors = {}
-      if (!recipe.nombre) {errors.nombre = "Debe ingresar un nombre"};
-      if (recipe.resumen.length<150) {errors.resumen="Debe escribir un resumen de al menos 150 caracteres"};
-      if (!recipe.pasos) {errors.pasos="Debe escribir los pasos para preparar"};
-      if (!recipe.nivel_saludable) {errors.nivel_saludable="Debe ingresar el Nivel Saludable"};
-      return errors
-   }
-   
+  
    const list = listaDiets?.map((e)=> e)
      
  
@@ -70,38 +64,40 @@ export default function Form () {
    }
 
    function handleChangeDiets(e) {
-         setRecipe({ ...recipe, diets: [...recipe.diets, e.target.value]})
-         setError(validar({...recipe,diets: e.target.value }))
+      setRecipe({ ...recipe, diets: [...recipe.diets, e.target.value]})
    }
     
-     function handleSubmit(event) { 
-         event.preventDefault()
-         const aux = recipeNombres.filter(elem =>elem.nombre === recipe.nombre)
-         if(aux.length>0){return alert ('Receta Repetida')}
-         if(Object.keys(error).length) {return alert ('Faltan datos en la receta')}
-         if(recipe.diets<=1) {return alert ("Seleccionar al menos una dieta")}
-         else {   
-            console.log(recipe)
-            dispatch(add_recipe(recipe))
-            setRecipe({
-               nombre: "",
-               image: "",
-               nivel_saludable: "",
-               resumen: "",
-               pasos: "",
-               diets: [],
-            })
-            setError({
-               nombre: "Debe ingresar un nombre",
-               image: "",
-               nivel_saludable: "",
-               resumen: "Debe escribir un resumen de al menos 150 caracteres",
-               pasos: "Debe escribir los pasos para preparar",
-               diets: [],
-            })
-            alert ('tu receta ha sido creada con exito')
-         }
+   function  handleSubmit (event) { 
+      event.preventDefault()
+      const aux = recipeNombres.filter(elem =>elem.nombre === recipe.nombre)
+      if(aux.length>0){return alert ('Receta Repetida')}
+      if(Object.keys(error).length) {return alert ('Faltan datos en la receta')}
+      if(recipe.diets<=1) {return alert ("Seleccionar al menos una dieta")}
+      
+      else {   
+         axios.post(`${URL}/recipes/`, recipe)
+         .then ((res) => alert(res.data))
+         .catch ((error) => alert (error))
+       
+         setRecipe({
+            nombre: "",
+            image: "",
+            nivel_saludable: "",
+            resumen: "",
+            pasos: "",
+            diets: [],
+         })
+         setError({
+            nombre: "Debe ingresar un nombre",
+            image: "",
+            nivel_saludable: "",
+            resumen: "",
+            pasos: "",
+            diets: [],
+         })
+        
       }
+   }
       
    return (
       <div className={style.container}>

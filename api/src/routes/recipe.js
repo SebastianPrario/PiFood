@@ -31,7 +31,7 @@ router.post("/" , async (req,res) => {
     try {
         const recipe = req.body
         const newRecipe = await createRecipe(recipe)
-        res.status(201).json(newRecipe)
+        res.status(201).send('Receta creada con exito!!')
     } catch (error) {res.status(400).json({error: error.message})}
       
 })
