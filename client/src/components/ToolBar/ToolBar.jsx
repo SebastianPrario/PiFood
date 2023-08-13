@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { orderByHealth, orderByRecipe , filterDiets , filterByBdd } from "../../redux/actions/index"
 import style from './ToolBar.module.css'
 
-export default function ToolBar({ setCurrentPage, setSortBy }) {
+export default function ToolBar({ setCurrentPage, setSortBy ,sortBy}) {
 
    const dispatch = useDispatch()
 
@@ -13,32 +12,41 @@ export default function ToolBar({ setCurrentPage, setSortBy }) {
     const handleChange = (event) => {
      
         if (event.target.value === "A-z" || event.target.value === 'Z-a') {
-            dispatch(orderByRecipe(event.target.value))
             setCurrentPage(0)
-            setSortBy(event.target.value)
+            setSortBy({...sortBy, 
+                alfaOrder: event.target.value,
+                healthOrder: 'default'
+        })
      
         } else {
-            dispatch(orderByHealth(event.target.value))
             setCurrentPage(0)
-            setSortBy(event.target.value)
+            setSortBy({...sortBy, 
+                healthOrder: event.target.value,
+                alfaOrder: 'default'
+            })
+
         }
     }
 
     const handleChangeDiets = (event) => {
-        dispatch(filterDiets(event.target.value))
         setCurrentPage(0);
+        setSortBy({...sortBy, 
+            orderDiets: event.target.value,
+            orderBdd: ''})
     }
 
     const handleChangeBdd = (event) => {
-        dispatch(filterByBdd(event.target.value))
         setCurrentPage(0);
+        setSortBy({...sortBy, 
+            orderBdd: event.target.value,
+            orderDiets: ""})
     }
 
     return (
         <div className={style.toolbar}>
             <div className={style.orderContainer}>
                 <span>Ordenar por:</span>
-                <select onChange={(e) => handleChange(e)} defaultValue={'default'} className={style.selectMain}>
+                <select onChange={(e) => handleChange(e)} value={sortBy.alfaOrder} className={style.selectMain}>
                     <option value="default">Ordenar por...</option>
                     <option value="A-z">A-z</option>
                     <option value="Z-a">Z-a</option>

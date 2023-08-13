@@ -22,7 +22,7 @@ export const get_recipe = () => {
                 payload: data,
             })
         }
-    }catch (error) {console.log (error)}
+    }catch (error) {alert (error)}
 }
 
 export const getRecipeByName=(name) => {
@@ -34,8 +34,8 @@ export const getRecipeByName=(name) => {
                 type: 'GET_RECIPE_NAME',
                 payload: datas,
             });
-        }; 
-    }catch (error) {alert ('no hay recetas con ese nombre')}
+        } 
+    } catch (error) {alert ('no hay recetas con ese nombre')}
 };
 
 export const getRecipeById = (id) => {
@@ -60,7 +60,7 @@ export const get_diets = () => {
                 payload: data,
             })
         }
-    }catch (error) {console.log(error)}
+    }catch (error) {alert(error)}
 }
 
 export const filterDiets = (data) => {

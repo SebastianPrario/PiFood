@@ -12,7 +12,7 @@ const createRecipe = async (recipe) => {
             nivel_saludable,
             pasos,
     })
-        
+       
     newRecipe.addDiets(diets) // este metodo lo crea automaticamente sequalize para relacionar los modelos
 
     return newRecipe

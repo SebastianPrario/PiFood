@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import style from './RecipeContainer.module.css'
-import { deleteRecipeById, get_diets, get_recipe } from "../../redux/actions";
+import { deleteRecipeById, get_diets, get_recipe , orderByRecipe ,filterByBdd, filterDiets, orderByHealth} from "../../redux/actions";
 import ToolBar from "../ToolBar/ToolBar";
 import Loader from './../Loader/Loader'
 
@@ -12,14 +12,29 @@ export default function RecipeContainer () {
     
     const dispatch = useDispatch()
     const {recipes,allRecipe} = useSelector((state) => state)
-    const [ sortBy, setSortBy ] = useState('')
+    const [ sortBy, setSortBy ] = useState({
+        alfaOrder:'default',
+        healthOrder: 'default',
+        orderBdd:'',
+        orderDiets:'',
+    })
     
  
     useEffect(() => {
         dispatch(get_recipe())
         dispatch(get_diets())
+ 
     },[])
     
+   
+    useEffect(() => {
+        sortBy.alfaOrder!=='default'  && dispatch(orderByRecipe(sortBy.alfaOrder))
+        sortBy.healthOrder!=='default' && dispatch(orderByHealth(sortBy.healthOrder));
+        sortBy.orderBdd!=='' ? dispatch(filterByBdd(sortBy.orderBdd)) :  dispatch(filterDiets(sortBy.orderDiets))
+    },[sortBy])
+
+
+
     const [currentPage ,setCurrentPage] = useState(0)
     const [pageTotal ,setPageTotal] = useState(0)
     const recxPag = 9;
@@ -29,9 +44,7 @@ export default function RecipeContainer () {
        const pageTotal = recipes?.lenght<=recxPag ? 1 : Math.ceil(recipes?.length / recxPag)
        setPageTotal(pageTotal)
     }
-    
-    console.log(currentPage)
-    console.log(pageTotal)
+  
     const recipeToRender =  recipes.length > 0 ? recipes?.slice(recxPag * currentPage, recxPag * (currentPage+1)) : []
 
     function handlerpagenext () {
@@ -50,6 +63,7 @@ export default function RecipeContainer () {
     useEffect(() => {
         setCurrentPage(0)
         pagesTotal()
+        
     }, [recipes])
     
     return allRecipe.length > 0  ? (
@@ -57,6 +71,7 @@ export default function RecipeContainer () {
             <div className={style.tooBar}>
                 <ToolBar
                 setSortBy={setSortBy}
+                sortBy={sortBy}
                 setCurrentPage={setCurrentPage}/>
             </div>
             <div className={style.paginado}>
