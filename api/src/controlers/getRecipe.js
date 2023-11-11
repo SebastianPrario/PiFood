@@ -7,7 +7,7 @@ const { Op } = require("sequelize");
 
 // funcion que obtiene info de la api
 const getAllRecipesApi = async(name) => {
-    const respuesta = (await axios.get('https://run.mocky.io/v3/7c9cdb34-3bbb-4eb6-a786-6be7c8100ddd')).data
+    const respuesta = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
     //rdo mokeado   
     //`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=2` (resultados api)
     

@@ -6,8 +6,8 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,DB_VIRTUAL,DB_LOCAL
 } = process.env;
 
-const ruta = DB_LOCAL
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
+const ruta = DB_VIRTUAL ? DB_VIRTUAL : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`
+const sequelize = new Sequelize(ruta , {
   logging: false, // para que no se muestre en la consola la info de sequalize
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });

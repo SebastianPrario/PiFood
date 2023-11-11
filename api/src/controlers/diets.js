@@ -18,7 +18,7 @@ const createDiet = async () => {
         dietas.flat().forEach(element => (!arrayDietas.includes(element)) && arrayDietas.push(element))
         arrayDietas.forEach(element => addDbb(element))
         diets = await Diet.findAll()
-        
+
     }
     
    
