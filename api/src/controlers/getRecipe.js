@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { URL, API_KEY } = process.env;
+const { URL, API_KEY , MOKY } = process.env;
 const axios = require ('axios');
 const { Recipe, Diet } = require ('../db')
 const { Op } = require("sequelize");
@@ -7,7 +7,7 @@ const { Op } = require("sequelize");
 
 // funcion que obtiene info de la api
 const getAllRecipesApi = async(name) => {
-    const respuesta = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
+    const respuesta = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=20`)).data
     //rdo mokeado   
     //`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=2` (resultados api)
     
@@ -38,7 +38,7 @@ const getAllRecipesApi = async(name) => {
                 pasos: elem.analyzedInstructions[0]?.steps.map((r) => {return r.step}).join(""),
                 diets: elem.diets
             }})
-       
+      
         return getAllRecipes
     }
 }
