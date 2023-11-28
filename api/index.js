@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 const PORT = 3001;
-conn.sync({ force: false }).then(() => { //force : true => resetea la BDD
+conn.sync({ alter: true }).then(() => { //force : true => resetea la BDD
   server.listen(PORT, () => {
     console.log(`listening at ${PORT}`); // eslint-disable-line no-console
   });
