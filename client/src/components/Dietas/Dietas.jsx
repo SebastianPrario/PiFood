@@ -10,7 +10,7 @@ export default function Dietas() {
             <div className={style.image}>
                 <img src={listDietas}  alt='listadodietas' />
             </div>    
-            <button type="button" className={style.button} onClick={() => { navigate('/Home') }}>Back</button>
+            <button type="button" className={style.button} onClick={() => { navigate('/Home') }}>Volver</button>
         </div>
     )
 }

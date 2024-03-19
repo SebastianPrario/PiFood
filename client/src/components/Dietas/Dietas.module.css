@@ -19,14 +19,17 @@
 
 .button {
 	
+	height: 50px;
+	width: 300px;
 	--offset: 10px;
 	--border-size: 2px;
-	position: relative;
-	padding: 1.5em 3em;
-	appearance: none;
+	margin: auto;
+	
+	
+
 	border: 0;
-	background: transparent;
-	color: #e55743;
+	background-color: rgb(230, 207, 230);
+	color: #110807;
 	text-transform: uppercase;
 	letter-spacing: .25em;
 	outline: none;

@@ -12,6 +12,7 @@ export default function RecipeContainer () {
     
     const dispatch = useDispatch()
     const {recipes,allRecipe} = useSelector((state) => state)
+    
     const [ sortBy, setSortBy ] = useState({
         alfaOrder:'default',
         healthOrder: 'default',
@@ -37,7 +38,7 @@ export default function RecipeContainer () {
 
     const [currentPage ,setCurrentPage] = useState(0)
     const [pageTotal ,setPageTotal] = useState(0)
-    const recxPag = 9;
+    const recxPag = 15;
     
     
     function pagesTotal () {

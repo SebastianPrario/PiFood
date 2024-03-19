@@ -22,7 +22,10 @@ export const get_recipe = () => {
                 payload: data,
             })
         }
-    }catch (error) {alert (error)}
+    } 
+    catch (error) {
+       console.error(error);
+    }
 }
 
 export const getRecipeByName=(name) => {
@@ -35,7 +38,8 @@ export const getRecipeByName=(name) => {
                 payload: datas,
             });
         } 
-    } catch (error) {alert ('no hay recetas con ese nombre')}
+    } 
+    catch (error) { return alert ('no hay recetas con ese nombre')}
 };
 
 export const getRecipeById = (id) => {

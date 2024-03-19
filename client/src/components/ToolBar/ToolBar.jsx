@@ -4,7 +4,7 @@ import style from './ToolBar.module.css'
 
 export default function ToolBar({ setCurrentPage, setSortBy ,sortBy}) {
 
-   const dispatch = useDispatch()
+ 
 
     const dietList = useSelector((state) => state.diets);
     const diestByName = dietList?.map((elem) => elem.nombre);
