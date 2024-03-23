@@ -1,4 +1,4 @@
-const BASE_URL ='http://localhost:3001'
+const BASE_URL ='https://apifood-two.vercel.app'
 module.exports = BASE_URL
 
 
