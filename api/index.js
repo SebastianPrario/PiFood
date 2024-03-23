@@ -17,14 +17,13 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require('./src/app.js')
+const { conn } = require('./src/db.js')
 
 // Syncing all the models at once.
-const PORT = 3001;
-conn.sync({ alter: true }).then(() => { //force : true => resetea la BDD
+const PORT = 3001
+conn.sync({ force: true }).then(() => { // force : true => resetea la BDD
   server.listen(PORT, () => {
-    console.log(`listening at ${PORT}`); // eslint-disable-line no-console
-  });
-});
-
+    console.log(`listening at ${PORT}`) // eslint-disable-line no-console
+  })
+})
